@@ -1,0 +1,273 @@
+version: '3.1'
+intents:
+- affirm
+- ask_me_support
+- ask_support_type
+- bot_challenge
+- deny
+- give_email
+- give_name
+- give_phone_number
+- give_support_type
+- give_surname
+- give_time
+- goodbye
+- greet
+- mood_great
+- mood_unhappy
+- nlu_fallback
+- give_product_id
+- give_user_needs_technical_form
+- start
+
+actions:
+- action_say_support_type
+- action_show_time
+- utter_ask_support_type
+- utter_financial_form_slot_values
+- utter_financial_support_type
+- utter_goodbye
+- utter_greet
+- utter_submit
+- utter_ask_name
+- utter_ask_email
+- utter_ask_surname
+- utter_ask_product_id
+- utter_ask_phone_number
+- utter_technical_form_slot_values
+- action_check_product_tips
+- action_save_technical_ticket
+- action_save_financial_ticket
+- action_save_technological_ticket
+
+entities:
+- phone_number
+- support_type
+- name
+- surname
+- email
+- product_id
+- user_needs_technical_form
+
+slots:
+  support_type:
+    type: categorical
+    values:
+    - technical
+    - financial
+    - technological
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: support_type
+
+  name:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: name
+    - type: from_text
+      conditions:
+      - active_loop: financial_form
+        requested_slot: name
+      - active_loop: technical_form
+        requested_slot: name
+      - active_loop: technological_form
+        requested_slot: name
+
+  surname:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: surname
+    - type: from_text
+      conditions:
+      - active_loop: financial_form
+        requested_slot: surname
+      - active_loop: technical_form
+        requested_slot: surname
+      - active_loop: technological_form
+        requested_slot: surname
+
+  email:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: email
+      conditions:
+      - active_loop: financial_form
+        requested_slot: email
+      - active_loop: technical_form
+        requested_slot: email
+      - active_loop: technological_form
+        requested_slot: email
+    - type: from_text
+      conditions:
+      - active_loop: financial_form
+        requested_slot: email
+      - active_loop: technical_form
+        requested_slot: email
+      - active_loop: technological_form
+        requested_slot: email
+
+  phone_number:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: phone_number
+      conditions:
+      - active_loop: financial_form
+        requested_slot: phone_number
+      - active_loop: technical_form
+        requested_slot: phone_number
+      - active_loop: technological_form
+        requested_slot: phone_number
+    - type: from_text
+      conditions:
+      - active_loop: financial_form
+        requested_slot: phone_number
+      - active_loop: technical_form
+        requested_slot: phone_number
+      - active_loop: technological_form
+        requested_slot: phone_number
+  
+  product_id:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: product_id
+      intent: give_product_id
+    - type: from_entity
+      entity: product_id
+      conditions:
+      - active_loop: technical_form
+        requested_slot: product_id
+    - type: from_text
+      conditions:
+      - active_loop: technical_form
+        requested_slot: product_id
+
+  user_needs_technical_form:
+    type: categorical
+    values:
+    - yes
+    - no
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      intent: give_user_needs_technical_form
+      entity: user_needs_technical_form
+    - type: from_text
+      conditions:
+      - active_loop: technical_form
+        requested_slot: user_needs_technical_form
+
+  technological_problem:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_text
+      conditions:
+      - active_loop: technological_form
+        requested_slot: technological_problem
+
+forms:
+  financial_form:
+    ignored_intents:
+    - greet
+    - goodbye
+    required_slots:
+    - name
+    - surname
+    - email
+    - phone_number
+
+  technical_form:
+    ignored_intents:
+    - greet
+    - goodbye
+    required_slots:
+    - name
+    - surname
+    - product_id
+    - email
+    - phone_number
+  
+  technological_form:
+    ignored_intents:
+    - greet
+    - goodbye
+    required_slots:
+    - name
+    - surname
+    - technological_problem
+    - email
+    - phone_number
+
+responses:
+  utter_greet:
+  - text: |-
+      Hey! How can I help you? 
+      You can ask for technical support if you need assistance on one of the products you purchased.
+      You can ask for financial assistance if you need further information or help on the economical side of your purchases.
+      You can also ask for technological help if you want to buy one of our products but you aren't sure the product is the right fit for you.
+  utter_cheer_up:
+  - text: 'Here is something to cheer you up:'
+    image: https://i.imgur.com/nGF1K8f.jpg
+  utter_did_that_help:
+  - text: Did that help you?
+  utter_happy:
+  - text: Great, carry on!
+  utter_goodbye:
+  - text: Bye
+  utter_iamabot:
+  - text: I am a bot, powered by Rasa.
+  utter_ask_support_type:
+  - text: What kind of support do you need?
+  utter_remember:
+  - text: Ok, I'll remember that
+  utter_technical_support_type:
+  - text: Nice, you asked for technical support!
+  utter_financial_support_type:
+  - text: |-
+      Nice, you asked for financial support! 
+      We will ask some of your informations in order to be contacted by our company.
+  utter_technological_support_type:
+  - text: Nice, you asked for technological support!
+  utter_ask_name:
+  - text: What is your birth name?
+  utter_ask_surname:
+  - text: Ok {name}, what is your last name or family name?
+  utter_ask_email:
+  - text: Can you provide an e-mail where we can contact you?
+  utter_ask_phone_number:
+  - text: And, at last, can you provide a phone number?
+  utter_submit:
+  - text: Ok, thanks!
+  utter_financial_form_slot_values:
+  - text: A financial support request will be issued for {name} {surname}, email {email}, phone number {phone_number}.
+  utter_technical_form_slot_values:
+  - text: A technical support request will be issued for {name} {surname}, email {email}, phone number {phone_number} product {product_id}.
+  utter_technological_form_slot_values:
+  - text: A technological support request with the technological concern you presented will be issued for {name} {surname}, email {email}, phone number {phone_number}.
+  utter_ask_product_id:
+  - text: Can you provide the product ID which you need assistance for?
+  utter_ask_user_needs_technical_form:
+  - text: Do you still need more technical assistance?
+  utter_start_technical_form:
+  - text: An assistance ticket will be issued. Please insert the required informations.
+  utter_not_start_technical_form:
+  - text: An assistance ticket is not needed. How can I help you?
+  utter_ask_technological_problem:
+  - text: Write in only one message what is your technological concern.
+  utter_start:
+  - text: Welcome visitor! I am a demonstrative bot for a University Project. I am built to help people in resolving several problems in a dummy use-case.
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

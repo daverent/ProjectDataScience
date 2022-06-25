@@ -1,0 +1,404 @@
+version: "3.1"
+
+stories:
+
+- story: risposta telegram
+  steps:
+  - intent: start
+  - action: utter_start
+  - action: utter_greet
+
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_happy
+
+- story: sad path 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_happy
+
+- story: sad path 2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_goodbye
+
+- story: path about time
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: give_time
+  - action: action_show_time
+
+- story: path starting with surname
+  steps:
+  - intent: give_surname
+  - action: utter_greet
+  - intent: give_support_type
+
+- story: path starting with name
+  steps:
+  - intent: give_name
+  - action: utter_greet
+  - intent: give_support_type
+
+- story: give support type TECHNICAL short
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: give_support_type
+    entities:
+    - support_type: technical
+  - slot_was_set:
+    - support_type: technical
+  - action: utter_technical_support_type
+  - action: utter_ask_product_id
+  - intent: give_product_id
+  - action: action_check_product_tips
+  - action: utter_ask_user_needs_technical_form
+
+- story: start TECHNICAL form
+  steps:
+  - action: utter_ask_user_needs_technical_form
+  - intent: give_user_needs_technical_form
+    entities:
+    - user_needs_technical_form: yes
+  - slot_was_set:
+    - user_needs_technical_form: yes
+  - action: utter_start_technical_form
+  - action: technical_form
+  - active_loop: technical_form
+
+- story: don't start TECHNICAL form
+  steps:
+  - action: utter_ask_user_needs_technical_form
+  - intent: give_user_needs_technical_form
+    entities:
+    - user_needs_technical_form: no
+  - slot_was_set:
+    - user_needs_technical_form: no
+  - action: utter_not_start_technical_form
+
+- story: give support type FINANCIAL short
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: give_support_type
+    entities:
+    - support_type: financial
+  - slot_was_set:
+    - support_type: financial
+  - action: utter_financial_support_type
+  - action: financial_form
+  - active_loop: financial_form
+
+- story: give support type TECHNOLOGICAL short
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: give_support_type
+    entities:
+    - support_type: technological
+  - slot_was_set:
+      - support_type: technological
+  - action: utter_technological_support_type
+  - action: technological_form
+  - active_loop: technological_form
+
+- story: FINANCIAL support (interactive)
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: ask_support_type
+  - action: utter_ask_support_type
+  - intent: give_support_type
+    entities:
+    - support_type: financial
+  - slot_was_set:
+    - support_type: financial
+  - action: utter_financial_support_type
+  - action: financial_form
+  - active_loop: financial_form
+  - slot_was_set:
+    - requested_slot: name
+  - slot_was_set:
+    - name: David
+  - slot_was_set:
+    - requested_slot: surname
+  - slot_was_set:
+    - surname: Caprari
+  - slot_was_set:
+    - requested_slot: email
+  - slot_was_set:
+    - email: d.caprari@studenti.it
+  - slot_was_set:
+    - requested_slot: phone_number
+  - slot_was_set:
+    - phone_number: '3202581789'
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit
+  - action: action_save_financial_ticket
+  - action: utter_financial_form_slot_values
+  - intent: goodbye
+  - action: utter_goodbye
+
+- story: interactive_story_1
+  steps:
+  - intent: give_surname
+    entities:
+    - name: Cristian
+    - surname: Cingolani
+  - slot_was_set:
+    - name: Cristian
+  - slot_was_set:
+    - surname: Cingolani
+  - action: utter_greet
+  - intent: give_support_type
+    entities:
+    - support_type: financial
+  - slot_was_set:
+    - support_type: financial
+  - action: utter_financial_support_type
+  - action: financial_form
+  - active_loop: financial_form
+  - slot_was_set:
+    - requested_slot: email
+  - slot_was_set:
+    - email: c.cingo@studenti.it
+  - slot_was_set:
+    - requested_slot: phone_number
+  - slot_was_set:
+    - phone_number: '3356589741'
+  - slot_was_set:
+    - phone_number: '3356589741'
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit
+  - action: action_save_financial_ticket
+  - action: utter_financial_form_slot_values
+
+- story: interactive_story_1
+  steps:
+  - intent: give_name
+    entities:
+    - name: Cristian
+  - slot_was_set:
+    - name: Cristian
+  - action: utter_greet
+  - intent: give_support_type
+    entities:
+    - support_type: financial
+  - slot_was_set:
+    - support_type: financial
+  - action: utter_financial_support_type
+  - action: financial_form
+  - active_loop: financial_form
+  - slot_was_set:
+    - requested_slot: surname
+  - slot_was_set:
+    - surname: Cingolani
+  - slot_was_set:
+    - surname: Cingolani
+  - slot_was_set:
+    - requested_slot: email
+  - slot_was_set:
+    - email: cristian.cingo@gmail.com
+  - slot_was_set:
+    - email: cristian.cingo@gmail.com
+  - slot_was_set:
+    - requested_slot: phone_number
+  - slot_was_set:
+    - phone_number: '3215647852'
+  - slot_was_set:
+    - phone_number: '3215647852'
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit
+  - action: action_save_financial_ticket
+  - action: utter_financial_form_slot_values
+
+- story: interactive_story_1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: give_support_type
+    entities:
+    - support_type: technical
+  - slot_was_set:
+    - support_type: technical
+  - action: utter_technical_support_type
+  - action: utter_ask_product_id
+  - intent: give_product_id
+    entities:
+    - product_id: id002
+  - action: action_check_product_tips
+  - action: utter_ask_user_needs_technical_form
+  - intent: affirm
+    entities:
+    - user_needs_technical_form: yes
+  - action: utter_start_technical_form
+  - action: technical_form
+  - active_loop: technical_form
+  - slot_was_set:
+    - requested_slot: name
+  - slot_was_set:
+    - name: Peter
+  - slot_was_set:
+    - requested_slot: surname
+  - slot_was_set:
+    - surname: Parker
+  - slot_was_set:
+    - requested_slot: product_id
+  - slot_was_set:
+    - product_id: id002
+  - slot_was_set:
+    - product_id: id002
+  - slot_was_set:
+    - requested_slot: email
+  - slot_was_set:
+    - email: p.parker@spiderman.it
+  - slot_was_set:
+    - requested_slot: phone_number
+  - slot_was_set:
+    - phone_number: '3554565852'
+  - slot_was_set:
+    - phone_number: '3554565852'
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit
+  - action: action_save_technical_ticket
+  - action: utter_technical_form_slot_values
+
+- story: interactive_story_1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: give_support_type
+    entities:
+    - support_type: technical
+  - slot_was_set:
+    - support_type: technical
+  - action: utter_technical_support_type
+  - action: utter_ask_product_id
+  - intent: give_product_id
+    entities:
+    - product_id: id002
+  - slot_was_set:
+    - product_id: id002
+  - action: action_check_product_tips
+  - action: utter_ask_user_needs_technical_form
+  - intent: deny
+    entities:
+    - user_needs_technical_form: no
+  - action: utter_not_start_technical_form
+
+- story: interactive_story_1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: give_support_type
+    entities:
+    - support_type: technological
+  - slot_was_set:
+    - support_type: technological
+  - action: utter_technological_support_type
+  - action: technological_form
+  - active_loop: technological_form
+  - slot_was_set:
+    - requested_slot: name
+  - slot_was_set:
+    - name: David
+  - slot_was_set:
+    - requested_slot: surname
+  - slot_was_set:
+    - surname: Caprari
+  - slot_was_set:
+    - requested_slot: technological_problem
+  - slot_was_set:
+    - product_id: id002
+  - slot_was_set:
+    - technological_problem: I have a small business, i'm not sure if i need id001 more than id002
+  - slot_was_set:
+    - requested_slot: email
+  - slot_was_set:
+    - email: d.caprari@univpm.it
+  - slot_was_set:
+    - requested_slot: phone_number
+  - slot_was_set:
+    - phone_number: '3331234567'
+  - slot_was_set:
+    - phone_number: '3331234567'
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit
+  - action: action_save_technological_ticket
+  - action: utter_technological_form_slot_values
+  - intent: greet
+  - action: utter_greet
+  - intent: give_support_type
+    entities:
+    - support_type: technological
+  - action: utter_technological_support_type
+  - action: technological_form
+  - active_loop: technological_form
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit
+  - action: action_save_technological_ticket
+  - action: utter_technological_form_slot_values
+
+- story: interactive_story_1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: give_support_type
+    entities:
+    - support_type: financial
+  - slot_was_set:
+    - support_type: financial
+  - action: utter_financial_support_type
+  - action: financial_form
+  - active_loop: financial_form
+  - slot_was_set:
+    - requested_slot: name
+  - slot_was_set:
+    - name: David
+  - slot_was_set:
+    - requested_slot: surname
+  - slot_was_set:
+    - surname: Caprari
+  - slot_was_set:
+    - requested_slot: email
+  - slot_was_set:
+    - email: s1097622@studenti.univpm.it
+  - slot_was_set:
+    - requested_slot: phone_number
+  - slot_was_set:
+    - phone_number: '3213456789'
+  - slot_was_set:
+    - phone_number: '3213456789'
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit
+  - action: action_save_financial_ticket
+  - action: utter_financial_form_slot_values

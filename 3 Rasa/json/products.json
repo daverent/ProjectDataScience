@@ -1,0 +1,48 @@
+{
+    "products": [
+        {
+            "product_id": "id001",
+            "solutions": [
+                {
+                    "code": "11",
+                    "text": "If the user is getting error 'e11' try rebooting the device."
+                },
+                {
+                    "code": "12",
+                    "text": "If the user is getting error 'e12' try to give the device a Fonzi's hit."
+                },
+                {
+                    "code": "13",
+                    "text": "If the user is getting error 'e13' try to jump on the device."
+                },
+                {
+                    "code": "14",
+                    "text": "If the user is getting error 'e13' try to throw the device out of the window."
+                }
+            ],
+            "image": "https://www.netgear.com/cid/fit/1024x633/to/jpg/https/www.netgear.com/media/R7000_productcarousel_3_tcm148-96545.png"
+        },
+        {
+            "product_id": "id002",
+            "solutions": [
+                {
+                    "code": "21",
+                    "text": "If the user is getting error 'e21' try rebooting the device."
+                },
+                {
+                    "code":"22",
+                    "text": "If the user is getting error 'e22' try to give the device a Fonzi's hit."
+                },
+                {
+                    "code":"23",
+                    "text": "If the user is getting error 'e23' try to jump on the device."
+                },
+                {
+                    "code":"24",
+                    "text": "If the user is getting error 'e23' try to throw the device out of the window."
+                }
+            ],
+            "image": "https://images.eprice.it/nobrand/0/Lightbox/542/301153542/1012902971.jpg"
+        }
+    ]
+}

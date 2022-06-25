@@ -1,0 +1,75 @@
+version: "3.1"
+
+rules:
+
+- rule: Say goodbye anytime the user says goodbye
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+
+- rule: Say 'I am a bot' anytime the user challenges
+  steps:
+  - intent: bot_challenge
+  - action: utter_iamabot
+
+- rule: Always ask for support_type if not provided
+  steps:
+  - intent: ask_me_support
+  - action: utter_ask_support_type
+
+- rule: Activate FINANCIAL form
+  steps:
+  - action: utter_financial_support_type
+  - action: financial_form
+  - active_loop: financial_form
+  wait_for_user_input: false
+
+- rule: Submit FINANCIAL form
+  condition:
+  - active_loop: financial_form
+  steps:
+  - action: financial_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_submit
+  - action: action_save_financial_ticket
+  - action: utter_financial_form_slot_values
+
+- rule: Activate TECHNICAL form
+  steps:
+  - action: utter_start_technical_form
+  - action: technical_form
+  - active_loop: technical_form
+  wait_for_user_input: false
+
+- rule: Submit TECHNICAL form
+  condition:
+  - active_loop: technical_form
+  steps:
+  - action: technical_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_submit
+  - action: action_save_technical_ticket
+  - action: utter_technical_form_slot_values
+
+- rule: Activate TECHNOLOGICAL form
+  steps:
+  - action: utter_technological_support_type
+  - action: technological_form
+  - active_loop: technological_form
+  wait_for_user_input: false
+
+- rule: Submit TECHNOLOGICAL form
+  condition:
+  - active_loop: technological_form
+  steps:
+  - action: technological_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_submit
+  - action: action_save_technological_ticket
+  - action: utter_technological_form_slot_values

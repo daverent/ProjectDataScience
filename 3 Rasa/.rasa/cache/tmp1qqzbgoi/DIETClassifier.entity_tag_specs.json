@@ -1,0 +1,52 @@
+[
+  {
+    "tag_name": "entity",
+    "ids_to_tags": {
+      "1": "B-email",
+      "2": "I-email",
+      "3": "L-email",
+      "4": "U-email",
+      "5": "B-name",
+      "6": "I-name",
+      "7": "L-name",
+      "8": "U-name",
+      "9": "B-phone_number",
+      "10": "I-phone_number",
+      "11": "L-phone_number",
+      "12": "U-phone_number",
+      "13": "B-support_type",
+      "14": "I-support_type",
+      "15": "L-support_type",
+      "16": "U-support_type",
+      "17": "B-surname",
+      "18": "I-surname",
+      "19": "L-surname",
+      "20": "U-surname",
+      "0": "O"
+    },
+    "tags_to_ids": {
+      "B-email": 1,
+      "I-email": 2,
+      "L-email": 3,
+      "U-email": 4,
+      "B-name": 5,
+      "I-name": 6,
+      "L-name": 7,
+      "U-name": 8,
+      "B-phone_number": 9,
+      "I-phone_number": 10,
+      "L-phone_number": 11,
+      "U-phone_number": 12,
+      "B-support_type": 13,
+      "I-support_type": 14,
+      "L-support_type": 15,
+      "U-support_type": 16,
+      "B-surname": 17,
+      "I-surname": 18,
+      "L-surname": 19,
+      "U-surname": 20,
+      "O": 0
+    },
+    "num_tags": 21
+  }
+]

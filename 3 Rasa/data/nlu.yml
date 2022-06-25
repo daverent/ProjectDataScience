@@ -1,0 +1,174 @@
+version: "3.1"
+nlu:
+- intent: start
+  examples: |
+    - /start
+    - start
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - moin
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+- intent: goodbye
+  examples: |
+    - cu
+    - good by
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+    - Bye
+- intent: affirm
+  examples: |
+    - yes
+    - y
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+    - [yes](user_needs_technical_form)
+- intent: deny
+  examples: |
+    - no
+    - n
+    - never
+    - I don't think so
+    - don't like that
+    - no way
+    - not really
+    - [no](user_needs_technical_form)
+- intent: mood_great
+  examples: |
+    - perfect
+    - great
+    - amazing
+    - feeling like a king
+    - wonderful
+    - I am feeling very good
+    - I am great
+    - I am amazing
+    - I am going to save the world
+    - super stoked
+    - extremely good
+    - so so perfect
+    - so good
+    - so perfect
+    - p.parker@spiderman.it
+- intent: mood_unhappy
+  examples: |
+    - my day was horrible
+    - I am sad
+    - I don't feel very well
+    - I am disappointed
+    - super sad
+    - I'm so sad
+    - sad
+    - very sad
+    - unhappy
+    - not good
+    - not very good
+    - extremly sad
+    - so saad
+    - so sad
+- intent: bot_challenge
+  examples: |
+    - are you a bot?
+    - are you a human?
+    - am I talking to a bot?
+    - am I talking to a human?
+- intent: give_time
+  examples: |
+    - can you tell what time is it?
+    - tell me the time
+    - got the time?
+    - what time is it?
+- intent: ask_me_support
+  examples: |
+    - I need assistance
+    - i need help
+    - i need to talk to you
+    - i'm asking for support
+    - i need assistance
+- intent: give_support_type
+  examples: |
+    - I need [technical](support_type) assistance
+    - I was asking for [financial](support_type) support
+    - i wanted [technological](support_type) support
+    - i need help with a [product](support_type)
+    - i need [financial](support_type) one
+    - i need [technical](support_type) support
+    - I need [financial](support_type) support
+    - I need [technical](support_type) support
+    - hi need [technical](support_type) assistance
+    - i need [technological](support_type) assistance
+    - i need [technological](support_type) support
+    - i need [financial](support_type) support
+- intent: ask_support_type
+  examples: |
+    - what kind of support did i ask for?
+    - what type of support do i need?
+    - i need support type
+- intent: give_name
+  examples: |
+    - [Cristian](name)
+    - [Carl](name) [Marx](surname)
+    - My name is [Bruce](name)
+    - They call me [Frank](name)
+    - Hi, my name is [Giacomo](name)
+    - hi, my name is [Cristian](name) [Cingolani](surname)
+    - hi, my name is [Cristian](name)
+- intent: give_surname
+  examples: |
+    - [Cingolani](surname)
+    - My last name is [Wayne](surname)
+    - My family name is [Zappa](surname)
+    - hi, my name is [Cristian](name) [Cingolani](surname)
+- intent: give_email
+  examples: |
+    - My email is [c.johsnon@gmail.com](email)
+    - [j.knoxville@jackass.com](email)
+    - [crisian.cingo@gmail.com](email)
+- intent: give_phone_number
+  examples: |
+    - [+393384525451](phone_number)
+    - my phone number is [+800870800](phone_number)
+    - [3202581789](phone_number)
+    - [3337878956](phone_number)
+    - [3356589741](phone_number)
+    - [3215647852](phone_number)
+    - [3554565852](phone_number)
+    - [3331234567](phone_number)
+    - [3213456789](phone_number)
+- intent: give_product_id
+  examples: |
+    - I need support for the product [id001](product_id)
+    - I need assistance for [id003](product_id)
+    - My [id012](product_id) is broken!
+    - Please help me! My [id124](product_id) doesn't work anymore
+    - [id884](product_id)
+    - [id008](product_id)
+    - [id002](product_id)
+    - I have a small business, i'm not sure if i need [id001](product_id) more than [id002](product_id)
+- intent: give_user_needs_technical_form
+  examples: |
+    - [yes](user_needs_technical_form)
+    - [no](user_needs_technical_form)
+    - [yes](user_needs_technical_form) i need more help
+- synonym: support
+  examples: |
+    - assistance
+    - help
