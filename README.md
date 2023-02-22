@@ -5,7 +5,7 @@
 
 Il progetto si divide in 3 diversi moduli:
 - **Business Intelligence** (Qlik, Tableau, PowerBi)
-  Analisi Descrittiva, Diagnostica e Predittiva di un dataset con dati socioeconomici mondiali attraverso l'utilizzo di software nel situati nel quarto quadrante di Gartner, all'avanguardia per la B.I..
+  Analisi Descrittiva, Diagnostica e Predittiva di un dataset con dati socioeconomici mondiali attraverso l'utilizzo di software situati nel quarto quadrante di Gartner, all'avanguardia per la B.I..
 - **Python** (Clustering/Classification, Time Series, Social Network Analysis)
   Analisi dei dati di diversi dataset con gli strumenti disposti da Python quali sklearn, yellowbricks, seaborn, networkx, statsmodels, etc.
 - **Chatbot** (Rasa)
